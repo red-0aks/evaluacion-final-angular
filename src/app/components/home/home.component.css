@@ -1,0 +1,8 @@
+.item-carousel{
+   overflow: hidden;
+   height: 400px;
+}
+
+.imagen-carousel {
+   top: -50%;
+}

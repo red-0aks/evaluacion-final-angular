@@ -1,3 +1,91 @@
 <div class="container mt-4 mb-4">
-   <form action=""></form>
+   <form [formGroup]="form">
+      <div class="card">
+         <div class="card-body">
+            <h5 class="card-title">Nuevo Producto</h5>
+            <p class="card-text">Complete los datos básicos para ingresar el producto.</p>
+
+            <!-- NOMBRE -->
+            <div class="form-group mb-3">
+               <label for="nombre" class="col-form-label col-sm-2">Nombre</label>
+               <div class="col-sm-10">
+                  <input name="nombre" id="nombre" formControlName="nombre" [(ngModel)]="producto.nombre"
+                     [ngClass]="{'is-invalid': submitted && f['nombre'].errors}" type="text" class="form-control">
+                  <!-- VALIDACIONES -->
+                  <div *ngIf="submitted && f['nombre'].errors" class="invalid-feedback">
+                     <div *ngIf="f['nombre'].errors['required']">Nombre Requerido.</div>
+                     <div *ngIf="f['nombre'].errors['minlength']">Nombre debe tener al menos dos caracteres.</div>
+                     <div *ngIf="f['nombre'].errors['minlength']">Nombre excede el largo máximo (200).</div>
+                  </div>
+               </div>
+            </div>
+
+            <!-- DESCRIPCION -->
+            <div class="form-group mb-3">
+               <label for="" class="col-form-label col-sm-2">Descripcion</label>
+               <div class="col-sm-10">
+
+                  <textarea name="descripcion" id="descripcion" formControlName="descripcion"
+                     [(ngModel)]="producto.descripcion" [ngClass]="{'is-invalid': submitted && f['descripcion'].errors}"
+                     cols="30" rows="5" class="form-control"></textarea>
+                  <!-- VALIDACIONES -->
+                  <div *ngIf="submitted && f['descripcion'].errors" class="invalid-feedback">
+                     <div *ngIf="f['descripcion'].errors['required']">Descripcion Requerido.</div>
+                     <div *ngIf="f['descripcion'].errors['minlength']">Descripcion debe tener al menos dos caracteres.
+                     </div>
+                     <div *ngIf="f['descripcion'].errors['minlength']">Descripcion excede el largo máximo (200).</div>
+                  </div>
+               </div>
+            </div>
+
+            <!-- STOCK -->
+            <div class="form-group mb-3">
+               <label for="stock" class="col-form-label col-sm-2">Stock</label>
+               <div class="col-sm-10">
+                  <input name="stock" id="stock" formControlName="stock" [(ngModel)]="producto.stock"
+                     [ngClass]="{'is-invalid': submitted && f['stock'].errors}" type="text" class="form-control">
+                  <!-- VALIDACIONES -->
+                  <div *ngIf="submitted && f['stock'].errors" class="invalid-feedback">
+                     <div *ngIf="f['stock'].errors['required']">Stock Requerido.</div>
+                  </div>
+               </div>
+            </div>
+
+            <!-- PRECIO -->
+            <div class="form-group mb-3">
+               <label for="precio" class="col-form-label col-sm-2">Precio</label>
+               <div class="col-sm-10">
+                  <input name="precio" id="precio" formControlName="precio" [(ngModel)]="producto.precio"
+                     [ngClass]="{'is-invalid': submitted && f['precio'].errors}" type="text" class="form-control">
+                  <!-- VALIDACIONES -->
+                  <div *ngIf="submitted && f['precio'].errors" class="invalid-feedback">
+                     <div *ngIf="f['precio'].errors['required']">Precio Requerido.</div>
+                  </div>
+               </div>
+            </div>
+
+            <!-- IMAGEN -->
+            <div class="form-group mb-3">
+               <label for="imagen" class="col-form-label col-sm-2">Imagen</label>
+               <div class="col-sm-10">
+                  <input name="imagen" id="imagen" formControlName="imagen" [(ngModel)]="producto.imagen"
+                     [ngClass]="{'is-invalid': submitted && f['imagen'].errors}" type="text" class="form-control">
+                  <!-- VALIDACIONES -->
+                  <div *ngIf="submitted && f['imagen'].errors" class="invalid-feedback">
+                     <div *ngIf="f['imagen'].errors['required']">Imagen Requerido.</div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="card-footer">
+            <div class="row form-group text-center">
+               <div class="col">
+                  <button class="btn btn-lg btn-primary m-2" type="button" (click)="onSubmit()">Crear</button>
+                  <button class="btn btn-lg btn-primary m-2" type="button" (click)="onReset()">Limpiar</button>
+                  <button class="btn btn-lg btn-danger  m-2" type="button" routerLink="/home">Volver</button>
+               </div>
+            </div>
+         </div>
+      </div>
+   </form>
 </div>

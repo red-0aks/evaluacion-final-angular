@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ProductoService } from 'src/app/services/producto.service';
-import { Producto } from '../../services/producto'
+import { Producto } from '../../services/producto';
+import { faCartPlus } from '@fortawesome/free-solid-svg-icons'
 
 @Component({
   selector: 'app-home',
@@ -11,6 +12,8 @@ export class HomeComponent implements OnInit {
 
   @Input() productos: Producto[] = [];
   @Input() mensaje: string = '';
+
+  faCartPlus = faCartPlus
 
   imagenesCarousel: any = [
     { src: '../../../assets/img/cat1.png' },
@@ -36,6 +39,6 @@ export class HomeComponent implements OnInit {
   }
 
   ordenarProductos(property: string): void {
-    
+
   }
 }

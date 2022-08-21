@@ -11,8 +11,8 @@ import Swal from 'sweetalert2';
 export class ProductoService {
 
   private urlEndpoint: string = 'http://localhost:8088/api/productos';
-  private httpHeaders =  new HttpHeaders({ 'Content-type' : 'application/json'});
-  
+  private httpHeaders = new HttpHeaders({ 'Content-type': 'application/json' });
+
   constructor(private http: HttpClient, private router: Router) { }
 
   //OBTENER TODOS LOS PRODUCTOS
@@ -34,11 +34,11 @@ export class ProductoService {
 
   //CREAR PRODUCTO
   createProducto(producto: Producto): Observable<any> {
-    return this.http.post(this.urlEndpoint, producto, {headers: this.httpHeaders}).pipe(
+    return this.http.post(this.urlEndpoint, producto, { headers: this.httpHeaders }).pipe(
       map((response: any) => response.producto as Producto),
       catchError(e => {
         console.error(e.error.mensaje);
-        Swal.fire(e.error.mensaje,e.error.error,'error');
+        Swal.fire(e.error.mensaje, e.error.error, 'error');
         return throwError(e);
       })
     );
@@ -46,10 +46,10 @@ export class ProductoService {
 
   //UPDATE PRODUCTO
   updateProducto(producto: Producto): Observable<any> {
-    return this.http.put<any>(`${this.urlEndpoint}/${producto.id}`, producto,{headers: this.httpHeaders}).pipe(
+    return this.http.put<any>(`${this.urlEndpoint}/${producto.id}`, producto, { headers: this.httpHeaders }).pipe(
       catchError(e => {
         console.error(e.error.mensaje);
-        Swal.fire(e.error.mensaje,e.error.error,'error');
+        Swal.fire(e.error.mensaje, e.error.error, 'error');
         return throwError(e);
       })
     );
@@ -57,10 +57,10 @@ export class ProductoService {
 
   //DELETE PRODUCTO
   deleteProducto(id: number): Observable<Producto> {
-    return this.http.delete<Producto>(`${this.urlEndpoint}/${id}`, {headers: this.httpHeaders}).pipe(
+    return this.http.delete<Producto>(`${this.urlEndpoint}/${id}`, { headers: this.httpHeaders }).pipe(
       catchError(e => {
         console.error(e.error.mensaje);
-        Swal.fire(e.error.mensaje,e.error.error,'error');
+        Swal.fire(e.error.mensaje, e.error.error, 'error');
         return throwError(e);
       })
     );

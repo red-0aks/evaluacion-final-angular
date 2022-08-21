@@ -28,7 +28,6 @@ export class FormularioComponent implements OnInit {
     private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.getProducto()
     this.form = this.formBuilder.group(
       {
         nombre: [
@@ -69,38 +68,31 @@ export class FormularioComponent implements OnInit {
     );
   }
 
-  get f(): {[key: string]: AbstractControl}{
+  get f(): { [key: string]: AbstractControl } {
     return this.form.controls;
   }
 
   onSubmit(): void {
     this.submitted = true;
-    if(this.form.invalid){
+    if (this.form.invalid) {
       return;
     }
     console.log(this.producto);
     this.createProducto();
   }
 
+  onReset(): void {
+    this.submitted = false;
+    this.form.reset();
+  }
+
   public createProducto(): void {
     this.productoService.createProducto(this.producto).subscribe(
       producto => {
         this.router.navigate(['/productos']);
-        Swal.fire('Nuevo Producto',`Se ha creado el producto ID: ${producto.ID} - ${producto.nombre}`,'success');
+        Swal.fire('Nuevo Producto', `Se ha creado el producto ID: ${producto.ID} - ${producto.nombre}`, 'success');
       }
     );
   }
-
-  public getProducto(): void {
-    this.activatedRoute.params.subscribe(params => {
-      let id = params['id']
-      if (id) {
-        this.productoService.getProducto(id).subscribe(
-          (producto) => this.producto = producto
-        )
-      }
-    });
-  }
-
 
 }

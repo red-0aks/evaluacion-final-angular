@@ -36,15 +36,18 @@
       <h2 class="my-4 text-center">Productos Destacados</h2>
       <div class="row">
          <div *ngFor="let producto of productos" class="col-3">
-            <div class="card">
-               <div class="card-header text-center">
-                  <h3>{{producto.nombre}}</h3>
+            <div class="card h-300">
+               <img class="img-fluid card-img-top" src="{{producto.imagen}}" alt="imagen producto {{producto.id}}">
+               <div class="card-body text-center">
+                  <h5 class=" card-title text-center">{{producto.nombre}}</h5>
+                  <!-- <p>{{producto.descripcion}}</p> -->
                </div>
-               <div class="card-body">
-                  <img class="img-fluid" src="{{producto.imagen}}" alt="imagen producto {{producto.id}}">
-               </div>
-               <div class="card-footer p-2">
-                  <p>{{producto.descripcion}}</p>
+               <div class="card-footer d-flex justify-content-between ">
+                  <h6 class="card-text py-2">{{producto.precio | currency:'CLP':'symbol-narrow':'1.0-0'}}</h6>
+                  <button class="btn btn-sm btn-outline-success">
+                     Agregar
+                     <fa-icon [icon]="faCartPlus"></fa-icon>
+                  </button>
                </div>
             </div>
          </div>

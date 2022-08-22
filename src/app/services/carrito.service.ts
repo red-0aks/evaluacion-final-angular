@@ -39,7 +39,7 @@ export class CarritoService {
   }
 
   public getMontoTotal(): number {
-    console.log('El monto total es: ', this.montoTotal)
+    // console.log('El monto total es: ', this.montoTotal)
     return this.montoTotal;
   }
 

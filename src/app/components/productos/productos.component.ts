@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
+import { faCartPlus, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { CarritoService } from 'src/app/services/carrito.service';
 import { Producto } from 'src/app/services/producto';
 import { ProductoService } from 'src/app/services/producto.service';
@@ -14,6 +14,9 @@ export class ProductosComponent implements OnInit {
   @Input() productos: Producto[] = [];
   @Input() mensaje: string = '';
   faCartPlus = faCartPlus;
+  faPlus = faPlus;
+
+  page: number = 1;
 
   constructor(private productoService: ProductoService, private carritoService: CarritoService) { }
 

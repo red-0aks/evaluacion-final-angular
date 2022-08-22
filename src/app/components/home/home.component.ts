@@ -36,6 +36,7 @@ export class HomeComponent implements OnInit {
         console.log(this.mensaje);
       }
     );
+    this.productos.splice(3, -1)
   }
 
   ordenarProductos(property: string): void {

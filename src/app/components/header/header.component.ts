@@ -1,4 +1,5 @@
 import { DOCUMENT, Location } from '@angular/common';
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import { Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
@@ -12,11 +13,8 @@ export class HeaderComponent implements OnInit {
 
   route: string = '';
   isAuthenticated: boolean;
-  // constructor() {
-  //   this.isAuthenticated = false;
-  // }
+  faCartShopping = faCartShopping;
 
-  // ngOnInit(): void {}
   constructor(@Inject(DOCUMENT) private document: Document, private auth: AuthService, private location: Location, private router: Router) {
     this.isAuthenticated = false;
   }

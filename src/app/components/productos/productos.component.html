@@ -1,8 +1,16 @@
 <div class="container">
    <h2 class="my-4 text-center">Todos los productos</h2>
+   <div class="row my-2">
+      <div class="col">
+         <button class="btn btn-success btn-lg" [routerLink]="['/productos/formulario']">
+            Nuevo
+            <fa-icon [icon]=" faPlus"></fa-icon>
+         </button>
+      </div>
+   </div>
    <div class="row">
-      <div *ngFor="let producto of productos" class="col-3">
-         <div class="card h-300">
+      <div *ngFor="let producto of productos | paginate: { itemsPerPage: 4, currentPage: page }" class="col-3">
+         <div class="card">
             <img class="img-fluid card-img-top" src="{{producto.imagen}}" alt="imagen producto {{producto.id}}">
             <div class="card-body text-center">
                <h5 class=" card-title text-center">{{producto.nombre}}</h5>
@@ -12,17 +20,19 @@
                <h6 class="card-text py-2">{{producto.precio | currency:'CLP':'symbol-narrow':'1.0-0'}}</h6>
                <button class="navbar-toggler" data-bs-toggle="offcanvas" data-bs-target="#carritoDeCompras"
                   aria-controls="offcanvasDarkNavbar">
-
                   <button class="btn btn-outline-primary" (click)="addToCarrito(producto)">
                      Agregar
                      <fa-icon [icon]=" faCartPlus"></fa-icon>
                   </button>
-
                </button>
             </div>
          </div>
       </div>
    </div>
+</div>
+<div class="container text-center my-2">
+   <pagination-controls (pageChange)="page = $event" previousLabel="Anterior" nextLabel="Siguiente">
+   </pagination-controls>
 </div>
 
 

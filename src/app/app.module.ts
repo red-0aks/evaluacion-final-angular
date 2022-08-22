@@ -19,12 +19,13 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthModule } from '@auth0/auth0-angular';
 import { environment } from 'src/environments/environment';
+import { NgxPaginationModule } from 'ngx-pagination'
 
 
-registerLocaleData(localeES,'es');
+registerLocaleData(localeES, 'es');
 
 @NgModule({
-  declarations: [	
+  declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
@@ -35,18 +36,20 @@ registerLocaleData(localeES,'es');
     Pagina404Component,
     FormularioComponent,
     CarritoComponent,
-   ],
+
+  ],
   imports: [
     BrowserModule,
-    AppRoutingModule, 
+    AppRoutingModule,
     HttpClientModule,
     FontAwesomeModule,
     ReactiveFormsModule,
     FormsModule,
-    AuthModule.forRoot(environment.auth0)
+    AuthModule.forRoot(environment.auth0),
+    NgxPaginationModule
   ],
   providers: [
-    {provide: LOCALE_ID, useValue: 'es-CL'}
+    { provide: LOCALE_ID, useValue: 'es-CL' }
   ],
   bootstrap: [AppComponent]
 })

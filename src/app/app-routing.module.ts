@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'home', redirectTo: '' },
   { path: 'productos', component: ProductosComponent },
-  { path: 'productos/formulario', component: FormularioComponent, },
+  { path: 'productos/formulario', component: FormularioComponent, canActivate: [AuthGuard] },
   { path: 'nosotros', component: NosotrosComponent },
   { path: '404', component: Pagina404Component },
   { path: '**', redirectTo: '' }

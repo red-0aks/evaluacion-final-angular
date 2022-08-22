@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { DOCUMENT, Location } from '@angular/common';
+import { Component, Inject, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '@auth0/auth0-angular';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +10,35 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  route: string = '';
+  isAuthenticated: boolean;
+  // constructor() {
+  //   this.isAuthenticated = false;
+  // }
+
+  // ngOnInit(): void {}
+  constructor(@Inject(DOCUMENT) private document: Document, private auth: AuthService, private location: Location, private router: Router) {
+    this.isAuthenticated = false;
+  }
 
   ngOnInit(): void {
+    this.auth.isAuthenticated$.subscribe((success: boolean) => {
+      this.isAuthenticated = success;
+    });
+  }
+
+  public login(): void {
+    this.route = this.location.path();
+
+    this.auth.loginWithRedirect({
+      appState: { target: this.route }
+    });
+  }
+
+  public logout(): void {
+    this.auth.logout({
+      returnTo: this.document.location.origin,
+    })
   }
 
 }

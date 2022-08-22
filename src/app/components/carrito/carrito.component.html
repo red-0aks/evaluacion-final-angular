@@ -1,1 +1,55 @@
-<p>carrito works!</p>
+<div class="offcanvas offcanvas-end" tabindex="-1" id="carritoDeCompras" aria-labelledby="offcanvasRightLabel">
+   <div id="seleccion">
+      <div class="offcanvas-header">
+         <h5 id="offcanvasRightLabel">Carrito de Compras</h5>
+
+      </div>
+      <div class="offcanvas-body">
+         <p></p>
+         <table class="table table-bordered table-striped text-center">
+            <thead class="table-dark">
+               <tr>
+                  <th>Nombre</th>
+                  <th>Precio</th>
+                  <th>Acciones</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr *ngFor="let item of listaProductos; index as i">
+                  <td>{{item.nombre}}</td>
+                  <td>{{item.precio | currency:'CLP':'symbol-narrow':'1.0-0'}}</td>
+                  <td>
+                     <button class="btn btn-danger btn-sm" (click)="deleteFromCarrito(i)">
+                        quitar
+                     </button>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+      <div class="offcanvas-footer">
+         <div class="container-fluid m-4">
+            <div class="row">
+               <div class="col-12">
+                  <div class="input-group mb-1">
+                     <span class="input-group-text" id="inputGroup-sizing-default">Monto Total</span>
+                     <span class="input-group-text bg-light" [(ngModel)]="montoTotal">{{montoTotal}}</span>
+                  </div>
+                  <button class="btn btn-primary btn-sm" (click)="getMontoTotal()">calcular</button>
+               </div>
+            </div>
+            <hr class="my-3">
+
+         </div>
+      </div>
+   </div>
+   <div class="row">
+      <div class="col-6 text-end pe-0">
+         <button class="btn btn-secondary ms-1 me-0" data-bs-dismiss="offcanvas" (click)="vaciarCarrito()">Vaciar
+            Carrito</button>
+      </div>
+      <div class="col-6 text-start p-0">
+         <button class="btn btn-warning mx-2" data-bs-dismiss="offcanvas" href='javascript:;'>Imprimir Compra</button>
+      </div>
+   </div>
+</div>
